@@ -31,8 +31,6 @@ self.addEventListener('fetch',e=>{
   });
 }
 <\/script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -45,12 +43,12 @@ self.addEventListener('fetch',e=>{
   --border:#D3D1C7;--bg:#FAFAF8;--white:#ffffff;
   --r:12px;--rs:8px;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
 /* HERO */
 .hero{background:var(--text);color:white;padding:2.5rem 2rem 2rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(255,255,255,.05)}
-.hero-title{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1.15;margin-bottom:.4rem;font-style:italic}
+.hero-title{font-family:Georgia,'Times New Roman',serif;font-size:2rem;line-height:1.15;margin-bottom:.4rem;font-style:italic}
 .hero-sub{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.25rem}
 .hero-stats{display:flex;gap:.6rem;flex-wrap:wrap}
 .stat-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:99px;padding:4px 13px;font-size:.75rem;color:rgba(255,255,255,.8)}
@@ -69,7 +67,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 /* SIDEBAR */
 .sidebar{border-right:1px solid var(--border);background:var(--white);padding:1.25rem 0}
 .sidebar-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);padding:.6rem 1.1rem .25rem}
-.nav-btn{width:100%;text-align:left;padding:.55rem 1.1rem;font-size:.82rem;font-family:'DM Sans',sans-serif;color:var(--text-muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .12s}
+.nav-btn{width:100%;text-align:left;padding:.55rem 1.1rem;font-size:.82rem;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;color:var(--text-muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .12s}
 .nav-btn:hover{color:var(--text);background:var(--gray-light)}
 .nav-btn.active-day{color:var(--green);background:var(--green-light);font-weight:500}
 .nav-btn.active-tab{color:var(--blue);background:var(--blue-light);font-weight:500}
@@ -81,7 +79,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 /* DAY HEADER */
 .day-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
-.day-title{font-family:'DM Serif Display',serif;font-size:1.5rem}
+.day-title{font-family:Georgia,'Times New Roman',serif;font-size:1.5rem}
 .sport-badge{background:var(--amber-light);color:var(--amber);font-size:.7rem;padding:3px 10px;border-radius:99px;font-weight:500}
 .pizza-badge{background:var(--coral-light);color:var(--coral);font-size:.7rem;padding:3px 10px;border-radius:99px;font-weight:500}
 .sport-info{background:var(--amber-light);border-radius:var(--rs);padding:.55rem .85rem;font-size:.76rem;color:var(--amber);margin-bottom:10px}
@@ -107,7 +105,7 @@ ul.ing li::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;
 
 /* SNACKS */
 .panel-header{margin-bottom:1.15rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
-.panel-title{font-family:'DM Serif Display',serif;font-size:1.5rem}
+.panel-title{font-family:Georgia,'Times New Roman',serif;font-size:1.5rem}
 .panel-sub{font-size:.8rem;color:var(--text-muted);margin-top:3px}
 .section-label{font-size:.73rem;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin:1rem 0 .4rem}
 .snacks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px;margin-bottom:1.25rem}
@@ -123,7 +121,7 @@ ul.ing li::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;
 .recipe-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
 .recipe-banner{padding:.9rem 1.15rem .55rem;background:var(--green-light)}
 .recipe-category{font-size:.63rem;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:3px}
-.recipe-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--text);line-height:1.25}
+.recipe-title{font-family:Georgia,'Times New Roman',serif;font-size:1.05rem;color:var(--text);line-height:1.25}
 .recipe-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
 .recipe-tag{font-size:.66rem;padding:2px 7px;border-radius:99px;border:1px solid var(--green-mid);color:var(--green)}
 .recipe-body{padding:.9rem 1.15rem}
@@ -200,7 +198,7 @@ body::after {
   .bottom-nav button {
     display: flex; flex-direction: column; align-items: center; gap: 3px;
     background: none; border: none; cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
     font-size: 0.6rem; color: var(--text-muted);
     padding: 4px 12px; border-radius: 8px;
     transition: all .12s;
@@ -238,7 +236,7 @@ body::after {
 }
 #pwa-splash .splash-icon { font-size: 4rem; }
 #pwa-splash .splash-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-size: 1.8rem;
   color: white;
