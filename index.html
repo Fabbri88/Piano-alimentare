@@ -192,7 +192,15 @@ ul.ing li::before{content:"·";color:var(--green);font-weight:700;flex-shrink:0;
   <div class="macro-item"><div class="macro-val">130g</div><div class="macro-lbl">Proteine</div></div>
   <div class="macro-item"><div class="macro-val">160g</div><div class="macro-lbl">Carboidrati</div></div>
   <div class="macro-item"><div class="macro-val">55g</div><div class="macro-lbl">Grassi</div></div>
-</div><div class="layout"><aside class="sidebar">
+</div>
+<div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;padding:.6rem 1rem;background:#fff;border-bottom:1px solid #D3D1C7;position:sticky;top:0;z-index:50">
+  <span style="font-size:.72rem;color:#888780;white-space:nowrap">Settimana:</span>
+  <button class="wk-pill wk-pill-on" onclick="setWeek(1,this)">Sett. 1</button>
+  <button class="wk-pill" onclick="setWeek(2,this)">Sett. 2</button>
+  <button class="wk-pill" onclick="setWeek(3,this)">Sett. 3</button>
+  <button class="wk-pill" onclick="setWeek(4,this)">Sett. 4</button>
+</div>
+<div class="layout"><aside class="sidebar">
   <div class="sidebar-label">Settimana</div>
   <div class="week-selector">
     <button class="wk-btn wk-active" onclick="setWeek(1,this)">Sett. 1</button>
