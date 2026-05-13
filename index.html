@@ -19,569 +19,837 @@
   --choc:#7F77DD;--choc-light:#EEEDFB;
   --gray:#5F5E5A;--gray-light:#F1EFE8;
   --text:#2C2C2A;--text-muted:#888780;
-  --border:#D3D1C7;--bg:#FAFAF8;--white:#ffffff;
+  --border:#D3D1C7;--bg:#FAFAF8;--white:#fff;
   --r:12px;--rs:8px;
   --sat:env(safe-area-inset-top,0px);
   --sab:env(safe-area-inset-bottom,0px);
 }
 html{height:100%}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
-  background:var(--bg);color:var(--text);
-  min-height:100vh;
-  -webkit-text-size-adjust:100%;
-  -webkit-tap-highlight-color:transparent;
-}
-
-/* HERO */
-.hero{
-  background:var(--text);color:white;
-  padding:calc(1.5rem + var(--sat)) 1.25rem 1.5rem;
-  position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;top:-40px;right:-40px;
-  width:180px;height:180px;border-radius:50%;
-  border:36px solid rgba(255,255,255,.05);
-}
-.hero-title{
-  font-family:Georgia,serif;font-style:italic;
-  font-size:1.75rem;line-height:1.15;margin-bottom:.35rem;
-}
-.hero-sub{font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:1rem}
-.hero-stats{display:flex;gap:.5rem;flex-wrap:wrap}
-.stat-pill{
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
-  border-radius:99px;padding:3px 11px;font-size:.7rem;color:rgba(255,255,255,.8);
-}
+body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+.hero{background:var(--text);color:white;padding:calc(1.25rem + var(--sat)) 1.25rem 1.25rem;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;border:36px solid rgba(255,255,255,.05)}
+.hero-title{font-family:Georgia,serif;font-style:italic;font-size:1.75rem;line-height:1.15;margin-bottom:.3rem}
+.hero-sub{font-size:.76rem;color:rgba(255,255,255,.5);margin-bottom:.9rem}
+.hero-stats{display:flex;gap:.4rem;flex-wrap:wrap}
+.stat-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:99px;padding:3px 10px;font-size:.68rem;color:rgba(255,255,255,.8)}
 .stat-pill strong{color:white}
-
-/* MACRO */
 .macro-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
-.macro-item{padding:.75rem .5rem;text-align:center;border-right:1px solid var(--border);background:var(--white)}
+.macro-item{padding:.7rem .5rem;text-align:center;border-right:1px solid var(--border);background:var(--white)}
 .macro-item:last-child{border-right:none}
-.macro-val{font-size:1.2rem;font-weight:600;color:var(--text)}
-.macro-lbl{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;margin-top:1px}
-
-/* LAYOUT */
-.layout{display:grid;grid-template-columns:200px 1fr}
-
-/* SIDEBAR */
-.sidebar{
-  border-right:1px solid var(--border);background:var(--white);
-  padding:1rem 0;position:sticky;top:0;height:100vh;overflow-y:auto;
-}
-.sidebar-label{
-  font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--text-muted);padding:.5rem 1rem .2rem;
-}
-.nav-btn{
-  width:100%;text-align:left;padding:.5rem 1rem;
-  font-size:.8rem;font-family:inherit;
-  color:var(--text-muted);background:none;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:background .1s;
-}
+.macro-val{font-size:1.15rem;font-weight:600;color:var(--text)}
+.macro-lbl{font-size:.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;margin-top:1px}
+.layout{display:grid;grid-template-columns:195px 1fr}
+.sidebar{border-right:1px solid var(--border);background:var(--white);padding:.75rem 0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-label{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);padding:.5rem .9rem .2rem}
+.nav-btn{width:100%;text-align:left;padding:.45rem .9rem;font-size:.77rem;font-family:inherit;color:var(--text-muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .1s}
 .nav-btn:hover{color:var(--text);background:var(--gray-light)}
 .nav-btn.active-day{color:var(--green);background:var(--green-light);font-weight:500}
 .nav-btn.active-tab{color:var(--blue);background:var(--blue-light);font-weight:500}
-.sdot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
-
-/* MAIN */
-.main{padding:1.25rem;min-height:100vh}
+.sdot{width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0}
+.week-selector{display:flex;gap:4px;padding:.5rem .9rem;flex-wrap:wrap}
+.wk-btn{padding:3px 9px;font-size:.68rem;font-family:inherit;border:1px solid var(--border);border-radius:99px;background:none;color:var(--text-muted);cursor:pointer}
+.wk-btn.wk-active{background:var(--green);color:white;border-color:var(--green)}
+.main{padding:1.1rem;min-height:100vh}
 .panel{display:none}.panel.active{display:block}
-
-/* DAY HEADER */
-.day-header{
-  display:flex;align-items:center;gap:.6rem;
-  margin-bottom:1rem;padding-bottom:.65rem;border-bottom:1px solid var(--border);
-}
-.day-title{font-family:Georgia,serif;font-size:1.4rem}
-.sport-badge{background:var(--amber-light);color:var(--amber);font-size:.68rem;padding:2px 9px;border-radius:99px;font-weight:500}
-.pizza-badge{background:var(--coral-light);color:var(--coral);font-size:.68rem;padding:2px 9px;border-radius:99px;font-weight:500}
-.sport-info{background:var(--amber-light);border-radius:var(--rs);padding:.5rem .8rem;font-size:.73rem;color:var(--amber);margin-bottom:9px}
-
-/* MEALS */
-.meals{display:flex;flex-direction:column;gap:8px}
-.meal-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.85rem 1.1rem}
+.day-header{display:flex;align-items:center;gap:.55rem;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.day-title{font-family:Georgia,serif;font-size:1.35rem}
+.sport-badge{background:var(--amber-light);color:var(--amber);font-size:.66rem;padding:2px 8px;border-radius:99px;font-weight:500}
+.pizza-badge{background:var(--coral-light);color:var(--coral);font-size:.66rem;padding:2px 8px;border-radius:99px;font-weight:500}
+.sport-info{background:var(--amber-light);border-radius:var(--rs);padding:.45rem .75rem;font-size:.71rem;color:var(--amber);margin-bottom:8px}
+.meals{display:flex;flex-direction:column;gap:7px}
+.meal-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.8rem 1rem}
 .meal-card.sport-pre{border-left:3px solid var(--amber)}
 .meal-card.post-sport{border-left:3px solid var(--green)}
 .meal-card.pizza-night{border-left:3px solid var(--coral)}
 .meal-card.choc-card{border-left:3px solid var(--choc)}
-.meal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
-.meal-name{font-size:.84rem;font-weight:600;color:var(--text)}
-.meal-meta{display:flex;align-items:center;gap:6px}
-.meal-time{font-size:.68rem;color:var(--text-muted)}
-.kcal-tag{font-size:.68rem;background:var(--gray-light);color:var(--gray);padding:2px 7px;border-radius:99px}
+.meal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.45rem}
+.meal-name{font-size:.82rem;font-weight:600;color:var(--text)}
+.meal-meta{display:flex;align-items:center;gap:5px}
+.meal-time{font-size:.66rem;color:var(--text-muted)}
+.kcal-tag{font-size:.66rem;background:var(--gray-light);color:var(--gray);padding:2px 7px;border-radius:99px}
 ul.ing{list-style:none}
-ul.ing li{font-size:.78rem;color:var(--text-muted);padding:2px 0;display:flex;align-items:flex-start;gap:5px;line-height:1.4}
-ul.ing li::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
-.alt-note{margin-top:5px;font-size:.71rem;color:var(--text-muted);background:var(--gray-light);padding:4px 8px;border-radius:var(--rs)}
+ul.ing li{font-size:.76rem;color:var(--text-muted);padding:2px 0;display:flex;align-items:flex-start;gap:4px;line-height:1.4}
+ul.ing li::before{content:"·";color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.alt-note{margin-top:4px;font-size:.69rem;color:var(--text-muted);background:var(--gray-light);padding:4px 8px;border-radius:var(--rs)}
 .alt-note strong{color:var(--text)}
-.day-total{display:flex;gap:6px;flex-wrap:wrap;margin-top:.5rem;padding-top:.6rem;border-top:1px solid var(--border)}
-.total-chip{font-size:.68rem;padding:2px 9px;border-radius:99px;border:1px solid var(--border);color:var(--text-muted)}
-
-/* PANEL HEADER */
-.panel-header{margin-bottom:1rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
-.panel-title{font-family:Georgia,serif;font-size:1.4rem}
-.panel-sub{font-size:.78rem;color:var(--text-muted);margin-top:3px}
-.section-label{font-size:.7rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin:1rem 0 .4rem}
-
-/* SNACKS */
-.snacks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:8px;margin-bottom:1.25rem}
-.snack-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.8rem .9rem}
-.snack-title{font-size:.81rem;font-weight:600;color:var(--text);margin-bottom:2px}
-.snack-kcal{font-size:.68rem;color:var(--text-muted);margin-bottom:5px}
+.day-total{display:flex;gap:5px;flex-wrap:wrap;margin-top:.45rem;padding-top:.55rem;border-top:1px solid var(--border)}
+.total-chip{font-size:.66rem;padding:2px 8px;border-radius:99px;border:1px solid var(--border);color:var(--text-muted)}
+.panel-header{margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.panel-title{font-family:Georgia,serif;font-size:1.35rem}
+.panel-sub{font-size:.76rem;color:var(--text-muted);margin-top:2px}
+.section-label{font-size:.68rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin:.9rem 0 .35rem}
+.snacks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:7px;margin-bottom:1.1rem}
+.snack-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.75rem .85rem}
+.snack-title{font-size:.79rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.snack-kcal{font-size:.66rem;color:var(--text-muted);margin-bottom:4px}
 .snack-items{list-style:none}
-.snack-items li{font-size:.74rem;color:var(--text-muted);padding:1px 0}
-.snack-items li::before{content:'· ';color:var(--green);font-weight:700}
-
-/* RECIPES */
-.recipes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:.5rem}
+.snack-items li{font-size:.72rem;color:var(--text-muted);padding:1px 0}
+.snack-items li::before{content:"· ";color:var(--green);font-weight:700}
+.recipes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:11px;margin-top:.4rem}
 .recipe-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.recipe-banner{padding:.85rem 1.1rem .5rem;background:var(--green-light)}
-.recipe-category{font-size:.61rem;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:2px}
-.recipe-title{font-family:Georgia,serif;font-size:1rem;color:var(--text);line-height:1.25}
-.recipe-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
-.recipe-tag{font-size:.63rem;padding:2px 7px;border-radius:99px;border:1px solid var(--green-mid);color:var(--green)}
-.recipe-body{padding:.85rem 1.1rem}
-.recipe-section{font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin:.5rem 0 .22rem}
+.recipe-banner{padding:.8rem 1.05rem .45rem;background:var(--green-light)}
+.recipe-category{font-size:.59rem;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:2px}
+.recipe-title{font-family:Georgia,serif;font-size:.97rem;color:var(--text);line-height:1.25}
+.recipe-meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.recipe-tag{font-size:.61rem;padding:2px 6px;border-radius:99px;border:1px solid var(--green-mid);color:var(--green)}
+.recipe-body{padding:.8rem 1.05rem}
+.recipe-section{font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin:.45rem 0 .2rem}
 .recipe-body ul{list-style:none}
-.recipe-body ul li{font-size:.76rem;color:var(--text-muted);padding:1px 0}
-.recipe-body ul li::before{content:'· ';color:var(--green);font-weight:700}
+.recipe-body ul li{font-size:.74rem;color:var(--text-muted);padding:1px 0}
+.recipe-body ul li::before{content:"· ";color:var(--green);font-weight:700}
 .recipe-steps{counter-reset:steps;list-style:none}
-.recipe-steps li{counter-increment:steps;font-size:.76rem;color:var(--text-muted);padding:3px 0 3px 21px;position:relative;line-height:1.45}
-.recipe-steps li::before{content:counter(steps);position:absolute;left:0;top:3px;width:15px;height:15px;background:var(--green);color:white;border-radius:50%;font-size:.57rem;display:flex;align-items:center;justify-content:center;font-weight:600}
-
-/* TIPS */
-.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:.5rem}
-.tip-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.8rem .9rem}
-.tip-icon{font-size:1.1rem;margin-bottom:4px}
-.tip-title{font-size:.81rem;font-weight:600;color:var(--text);margin-bottom:3px}
-.tip-text{font-size:.74rem;color:var(--text-muted);line-height:1.5}
-
-/* SHOPPING */
-.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px;margin-top:.5rem}
-.shop-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.8rem .9rem}
-.shop-title{font-size:.76rem;font-weight:600;color:var(--text);margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid var(--border)}
-.shop-title+.shop-title{margin-top:9px}
+.recipe-steps li{counter-increment:steps;font-size:.74rem;color:var(--text-muted);padding:3px 0 3px 20px;position:relative;line-height:1.45}
+.recipe-steps li::before{content:counter(steps);position:absolute;left:0;top:3px;width:14px;height:14px;background:var(--green);color:white;border-radius:50%;font-size:.55rem;display:flex;align-items:center;justify-content:center;font-weight:600}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;margin-top:.4rem}
+.tip-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.75rem .85rem}
+.tip-icon{font-size:1.05rem;margin-bottom:3px}
+.tip-title{font-size:.79rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.tip-text{font-size:.72rem;color:var(--text-muted);line-height:1.5}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:7px;margin-top:.4rem}
+.shop-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.75rem .85rem}
+.shop-title{font-size:.74rem;font-weight:600;color:var(--text);margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid var(--border)}
+.shop-title+.shop-title{margin-top:8px}
 .shop-items{list-style:none}
-.shop-items li{font-size:.73rem;color:var(--text-muted);padding:2px 0}
-.shop-items li::before{content:'☐ ';color:var(--green)}
+.shop-items li{font-size:.71rem;color:var(--text-muted);padding:2px 0}
+.shop-items li::before{content:"☐ ";color:var(--green)}
 
-/* BOTTOM NAV - mobile only */
+/* ---- COMPARATORE ---- */
+.comp-wrapper{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:start;margin-top:.75rem}
+.comp-side{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.comp-side h3{font-size:.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem}
+.comp-select{width:100%;padding:.5rem .65rem;font-size:.8rem;font-family:inherit;border:1px solid var(--border);border-radius:var(--rs);background:var(--bg);color:var(--text);appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .65rem center;padding-right:2rem;margin-bottom:.6rem}
+.comp-input{width:100%;padding:.5rem .65rem;font-size:.85rem;font-family:inherit;border:1px solid var(--border);border-radius:var(--rs);background:var(--bg);color:var(--text);margin-bottom:.6rem}
+.comp-input:focus,.comp-select:focus{outline:none;border-color:var(--green)}
+.comp-info{font-size:.72rem;color:var(--text-muted);background:var(--gray-light);border-radius:var(--rs);padding:.5rem .65rem;line-height:1.5;margin-top:.3rem;min-height:2.5rem}
+.comp-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;padding-top:2.5rem}
+.comp-arrow-icon{font-size:1.4rem;color:var(--text-muted)}
+.comp-result{background:var(--green-light);border:1px solid var(--green-mid);border-radius:var(--r);padding:1rem;margin-top:1rem}
+.comp-result-title{font-size:.72rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem}
+.comp-result-val{font-size:1.5rem;font-weight:600;color:var(--text)}
+.comp-result-sub{font-size:.75rem;color:var(--text-muted);margin-top:.2rem}
+.comp-result-macros{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-top:.65rem}
+.comp-macro-chip{background:white;border-radius:var(--rs);padding:.4rem .5rem;text-align:center;border:1px solid var(--green-mid)}
+.comp-macro-chip .cv{font-size:.95rem;font-weight:600;color:var(--text)}
+.comp-macro-chip .cl{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em}
+.comp-cat-tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.9rem}
+.comp-cat-btn{padding:4px 12px;font-size:.74rem;font-family:inherit;border:1px solid var(--border);border-radius:99px;background:none;color:var(--text-muted);cursor:pointer;transition:all .1s}
+.comp-cat-btn.ccat-on{background:var(--blue);color:white;border-color:var(--blue)}
+.comp-note{font-size:.72rem;color:var(--text-muted);font-style:italic;margin-top:.5rem}
+
+/* BOTTOM NAV */
 .bottom-nav{display:none}
-
-/* MOBILE */
 @media(max-width:640px){
   .layout{grid-template-columns:1fr}
-  .sidebar{
-    position:static;height:auto;
-    display:flex;flex-wrap:nowrap;overflow-x:auto;
-    padding:.5rem;gap:4px;
-    border-right:none;border-bottom:1px solid var(--border);
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-  }
-  .sidebar::-webkit-scrollbar{display:none}
-  .sidebar-label{display:none}
-  .nav-btn{
-    width:auto;white-space:nowrap;padding:5px 12px;
-    border:1px solid var(--border);border-radius:99px;
-    font-size:.72rem;flex-shrink:0;justify-content:center;
-  }
+  .sidebar{position:static;height:auto;display:flex;flex-direction:column;padding:.4rem 0;border-right:none;border-bottom:1px solid var(--border)}
+  .week-selector{padding:.3rem .5rem}
+  .sidebar-label{padding:.4rem .5rem .15rem}
+  .nav-btn{padding:.4rem .5rem;font-size:.74rem}
   .macro-bar{grid-template-columns:repeat(2,1fr)}
-  .main{padding:.9rem;padding-bottom:calc(70px + var(--sab))}
-  .hero{padding:calc(1rem + var(--sat)) 1rem 1rem}
-  .hero-title{font-size:1.4rem}
+  .main{padding:.8rem;padding-bottom:calc(65px + var(--sab))}
+  .hero{padding:calc(.9rem + var(--sat)) .9rem .9rem}
+  .hero-title{font-size:1.35rem}
   .recipes-grid{grid-template-columns:1fr}
-  .snacks-grid{grid-template-columns:1fr 1fr}
-  .tips-grid{grid-template-columns:1fr}
-  .shop-grid{grid-template-columns:1fr 1fr}
-
-  /* Bottom tab bar */
-  .bottom-nav{
-    display:flex;position:fixed;bottom:0;left:0;right:0;
-    background:rgba(250,250,248,.95);
-    -webkit-backdrop-filter:blur(20px);
-    backdrop-filter:blur(20px);
-    border-top:.5px solid var(--border);
-    padding:6px 0 calc(6px + var(--sab));
-    z-index:200;justify-content:space-around;
-  }
-  .bottom-nav button{
-    display:flex;flex-direction:column;align-items:center;gap:2px;
-    background:none;border:none;cursor:pointer;
-    font-family:inherit;font-size:.58rem;color:var(--text-muted);
-    padding:3px 8px;border-radius:8px;flex:1;
-  }
-  .bottom-nav button .bi{font-size:1.25rem;line-height:1}
+  .comp-wrapper{grid-template-columns:1fr;gap:.6rem}
+  .comp-arrow{flex-direction:row;padding-top:0;justify-content:center;padding:.3rem 0}
+  .comp-arrow-icon{transform:rotate(90deg)}
+  .comp-result-macros{grid-template-columns:repeat(3,1fr)}
+  .bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:rgba(250,250,248,.95);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-top:.5px solid var(--border);padding:5px 0 calc(5px + var(--sab));z-index:200;justify-content:space-around}
+  .bottom-nav button{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:.54rem;color:var(--text-muted);padding:2px 4px;border-radius:7px;flex:1}
+  .bottom-nav button .bi{font-size:1.15rem;line-height:1}
   .bottom-nav button.bn-on{color:var(--green)}
+  .sidebar{display:none}
 }
+
+.week-bar{
+  display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;
+  padding:.55rem 1rem;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+}
+.week-bar-label{font-size:.72rem;color:var(--text-muted);margin-right:.2rem;white-space:nowrap}
+.wk-pill{
+  padding:4px 13px;font-size:.75rem;font-family:inherit;
+  border:1px solid var(--border);border-radius:99px;
+  background:none;color:var(--text-muted);cursor:pointer;
+  transition:all .12s;
+}
+.wk-pill:hover{background:var(--gray-light);color:var(--text)}
+.wk-pill.wk-pill-on{background:var(--green);color:white;border-color:var(--green);font-weight:500}
 </style>
 </head>
 <body>
-
 <div class="hero">
   <h1 class="hero-title">La Mia Dieta</h1>
-  <p class="hero-sub">38 anni · 81 kg → 76 kg entro il 20 giugno</p>
+  <p class="hero-sub">38 anni · 81 kg → 76 kg entro il 20 giugno · 4 settimane di piano</p>
   <div class="hero-stats">
     <span class="stat-pill">⚡ <strong>1.700 kcal/die</strong></span>
     <span class="stat-pill">💼 Lavoro <strong>9–16</strong> · Pranzo <strong>13–13:30</strong></span>
     <span class="stat-pill">⚽ Calcio <strong>Lun &amp; Gio 21–22:30</strong></span>
   </div>
 </div>
-
 <div class="macro-bar">
   <div class="macro-item"><div class="macro-val">1.700</div><div class="macro-lbl">kcal/die</div></div>
   <div class="macro-item"><div class="macro-val">130g</div><div class="macro-lbl">Proteine</div></div>
   <div class="macro-item"><div class="macro-val">160g</div><div class="macro-lbl">Carboidrati</div></div>
   <div class="macro-item"><div class="macro-val">55g</div><div class="macro-lbl">Grassi</div></div>
-</div>
-
-<div class="layout">
-<aside class="sidebar">
+</div><div class="layout"><aside class="sidebar">
+  <div class="sidebar-label">Settimana</div>
+  <div class="week-selector">
+    <button class="wk-btn wk-active" onclick="setWeek(1,this)">Sett. 1</button>
+    <button class="wk-btn" onclick="setWeek(2,this)">Sett. 2</button>
+    <button class="wk-btn" onclick="setWeek(3,this)">Sett. 3</button>
+    <button class="wk-btn" onclick="setWeek(4,this)">Sett. 4</button>
+  </div>
   <div class="sidebar-label">Giorni</div>
-  <button class="nav-btn active-day" onclick="showDay('lun',this)">Lunedì <span class="sdot"></span></button>
-  <button class="nav-btn" onclick="showDay('mar',this)">Martedì</button>
-  <button class="nav-btn" onclick="showDay('mer',this)">Mercoledì</button>
-  <button class="nav-btn" onclick="showDay('gio',this)">Giovedì <span class="sdot"></span></button>
-  <button class="nav-btn" onclick="showDay('ven',this)">Venerdì</button>
-  <button class="nav-btn" onclick="showDay('sab',this)">Sabato 🍕</button>
-  <button class="nav-btn" onclick="showDay('dom',this)">Domenica</button>
+  <button class="nav-btn active-day" id="sb-lun" onclick="showDayW('lun',this)">Lunedì <span class="sdot"></span></button>
+  <button class="nav-btn" id="sb-mar" onclick="showDayW('mar',this)">Martedì</button>
+  <button class="nav-btn" id="sb-mer" onclick="showDayW('mer',this)">Mercoledì</button>
+  <button class="nav-btn" id="sb-gio" onclick="showDayW('gio',this)">Giovedì <span class="sdot"></span></button>
+  <button class="nav-btn" id="sb-ven" onclick="showDayW('ven',this)">Venerdì</button>
+  <button class="nav-btn" id="sb-sab" onclick="showDayW('sab',this)">Sabato 🍕</button>
+  <button class="nav-btn" id="sb-dom" onclick="showDayW('dom',this)">Domenica</button>
   <div class="sidebar-label">Sezioni</div>
   <button class="nav-btn" onclick="showTab('spuntini',this)">Spuntini</button>
   <button class="nav-btn" onclick="showTab('ricette',this)">Ricette</button>
   <button class="nav-btn" onclick="showTab('consigli',this)">Consigli</button>
   <button class="nav-btn" onclick="showTab('spesa',this)">Spesa</button>
-</aside>
-
-<main class="main">
-
-<!-- LUNEDÌ -->
-<div class="panel active" id="day-lun">
-  <div class="day-header">
-    <h2 class="day-title">Lunedì</h2>
-    <span class="sport-badge">⚽ Calcio 21:00–22:30</span>
-  </div>
+  <button class="nav-btn" onclick="showTab('comparatore',this)">⚖️ Comparatore</button>
+</aside><main class="main">
+<div class="panel " id="day-lun-w1">
+  <div class="day-header"><h2 class="day-title">Lunedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
   <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
-  <div class="meals">
-    <div class="meal-card">
+  <div class="meals"><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~380 kcal</span></div></div>
-      <ul class="ing">
-        <li>Fiocchi d'avena <strong>50g</strong> con latte parz. scremato <strong>150ml</strong></li>
-        <li>1 banana matura <strong>100g</strong> a fette · miele <strong>10g</strong></li>
-        <li>Caffè o tè senza zucchero</li>
-      </ul>
-    </div>
-    <div class="meal-card">
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte parz. scremato <strong>150ml</strong></li><li>1 banana <strong>100g</strong> · miele <strong>10g</strong></li><li>Caffè o tè</li></ul>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~140 kcal</span></div></div>
-      <ul class="ing"><li>1 mela o pesca <strong>150g</strong> · mandorle <strong>15g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+      <ul class="ing"><li>1 mela <strong>150g</strong> · mandorle <strong>15g</strong></li></ul>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
-      <ul class="ing">
-        <li>Pasta integrale <strong>80g</strong> con tonno al naturale <strong>100g</strong>, pomodorini <strong>100g</strong>, basilico — preparata la sera prima</li>
-        <li>Carote baby <strong>100g</strong> o finocchio · olio EVO <strong>10g</strong></li>
-      </ul>
-      <div class="alt-note"><strong>Alt.:</strong> bresaola <strong>80g</strong> + mozzarella light <strong>60g</strong></div>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🥛 Spuntino pomeriggio</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> con tonno <strong>100g</strong>, pomodorini <strong>100g</strong>, basilico — preparata la sera prima</li><li>Carote baby <strong>100g</strong> · olio EVO <strong>10g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> bresaola <strong>80g</strong> + mozzarella light <strong>60g</strong></div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
-    </div>
-    <div class="meal-card sport-pre">
+    </div><div class="meal-card sport-pre">
       <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
-      <ul class="ing">
-        <li>Pane integrale <strong>60g</strong> con marmellata s. zuccheri <strong>20g</strong></li>
-        <li>1 banana <strong>100g</strong></li>
-      </ul>
-    </div>
-    <div class="meal-card post-sport">
+      <ul class="ing"><li>Pane integrale <strong>60g</strong> · marmellata s.zuccheri <strong>20g</strong></li><li>1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
       <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~460 kcal</span></div></div>
-      <ul class="ing">
-        <li>Petto di pollo alla griglia <strong>160g</strong></li>
-        <li>Riso bianco <strong>70g</strong> a crudo</li>
-        <li>Spinaci surgelati <strong>150g</strong> con aglio · olio EVO <strong>8g</strong></li>
-      </ul>
-      <div class="alt-note"><strong>Alt.:</strong> bresaola <strong>100g</strong> o galbanino <strong>60g</strong> (zero cottura)</div>
-    </div>
-  </div>
-  <div class="day-total">
-    <span class="total-chip">~1.850 kcal (sport)</span>
-    <span class="total-chip">Prot. ~135g</span><span class="total-chip">Carb. ~185g</span>
-  </div>
+      <ul class="ing"><li>Petto di pollo alla griglia <strong>160g</strong></li><li>Riso bianco <strong>70g</strong> a crudo</li><li>Spinaci surgelati <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> bresaola <strong>100g</strong> o galbanino <strong>60g</strong></div>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.850 kcal (sport)</span><span class="total-chip">Prot. ~135g</span><span class="total-chip">Carb. ~185g</span></div>
 </div>
-
-<!-- MARTEDÌ -->
-<div class="panel" id="day-mar">
+<div class="panel " id="day-mar-w1">
   <div class="day-header"><h2 class="day-title">Martedì</h2></div>
-  <div class="meals">
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🌅 Colazione — Pancakes</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~390 kcal</span></div></div>
-      <ul class="ing">
-        <li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong> — frullati, cotti in padella antiaderente</li>
-        <li>Crema di mandorle 100% <strong>20g</strong> · miele <strong>10g</strong></li>
-        <li>Caffè o tè senza zucchero</li>
-      </ul>
-      <div class="alt-note"><strong>Alt. crema:</strong> burro di arachidi · crema nocciole · tahini · crema pistacchio</div>
-    </div>
-    <div class="meal-card">
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~390 kcal</span></div></div>
+      <ul class="ing"><li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong> — frullati, padella antiaderente</li><li>Crema di mandorle 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul><div class="alt-note"><strong>Alt. crema:</strong> burro arachidi · nocciole · tahini · pistacchio</div>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Pesche o albicocche <strong>200g</strong> · noci <strong>12g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~545 kcal</span></div></div>
-      <ul class="ing">
-        <li>Piadina integrale <strong>60g</strong> con bresaola <strong>80g</strong>, scamorza <strong>40g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li>
-        <li>Finocchio a bastoncini <strong>100g</strong></li>
-      </ul>
-      <div class="alt-note"><strong>Alt.:</strong> prosciutto crudo o cotto sgrassato <strong>80–90g</strong></div>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🥛 Spuntino pomeriggio</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con bresaola <strong>80g</strong>, scamorza <strong>40g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li><li>Finocchio <strong>100g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> prosciutto crudo o cotto <strong>80–90g</strong></div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~505 kcal</span></div></div>
-      <ul class="ing">
-        <li>Hamburger di vitello magro <strong>150g</strong> alla piastra</li>
-        <li>Patate al forno con rosmarino <strong>180g</strong></li>
-        <li>Melanzane grigliate <strong>150g</strong> · olio EVO <strong>10g</strong></li>
-      </ul>
-    </div>
-    <div class="meal-card choc-card">
+      <ul class="ing"><li>Hamburger di vitello magro <strong>150g</strong> alla piastra</li><li>Patate al forno con rosmarino <strong>180g</strong></li><li>Melanzane grigliate <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
       <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
-      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong> (2–3 quadretti)</li></ul>
-    </div>
-  </div>
-  <div class="day-total">
-    <span class="total-chip">~1.810 kcal</span><span class="total-chip">Prot. ~128g</span>
-  </div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.810 kcal</span><span class="total-chip">Prot. ~128g</span></div>
 </div>
-
-<!-- MERCOLEDÌ -->
-<div class="panel" id="day-mer">
+<div class="panel " id="day-mer-w1">
   <div class="day-header"><h2 class="day-title">Mercoledì</h2></div>
-  <div class="meals">
-    <div class="meal-card">
+  
+  <div class="meals"><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~365 kcal</span></div></div>
-      <ul class="ing">
-        <li>Yogurt greco 0% <strong>200g</strong> · granola integrale <strong>30g</strong></li>
-        <li>Fragole fresche <strong>120g</strong> — alt: nettarine, pesche, ciliegie</li>
-        <li>Miele <strong>8g</strong> · caffè o tè</li>
-      </ul>
-    </div>
-    <div class="meal-card">
+      <ul class="ing"><li>Yogurt greco 0% <strong>200g</strong> · granola integrale <strong>30g</strong></li><li>Fragole <strong>120g</strong> — alt: nettarine, pesche, ciliegie · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>1 mela o susine <strong>150g</strong> · mandorle <strong>12g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~545 kcal</span></div></div>
-      <ul class="ing">
-        <li>Insalata di farro <strong>80g</strong> a crudo (cotto la sera prima) con mozzarella light <strong>80g</strong>, pomodorini <strong>100g</strong>, basilico, olio EVO <strong>10g</strong></li>
-        <li>Prosciutto cotto sgrassato <strong>80g</strong> · carote baby <strong>80g</strong></li>
-      </ul>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🧀 Spuntino pomeriggio</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~140 kcal</span></div></div>
-      <ul class="ing"><li>3 gallette di riso <strong>30g</strong> + philadelphia light <strong>40g</strong> + mandorle <strong>12g</strong></li></ul>
-      <div class="alt-note">Yogurt già usato a colazione → si usa questa alternativa</div>
-    </div>
-    <div class="meal-card">
+      <ul class="ing"><li>Insalata di farro <strong>80g</strong> a crudo (cotto la sera prima) con mozzarella light <strong>80g</strong>, pomodorini <strong>100g</strong>, basilico, olio EVO <strong>10g</strong></li><li>Prosciutto cotto sgrassato <strong>80g</strong> · carote baby <strong>80g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🧀 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~140 kcal</span></div></div>
+      <ul class="ing"><li>3 gallette di riso <strong>30g</strong> + philadelphia light <strong>40g</strong> + mandorle <strong>12g</strong></li></ul><div class="alt-note">Yogurt già a colazione → alternativa</div>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~520 kcal</span></div></div>
-      <ul class="ing">
-        <li>Scaloppine di vitello al limone <strong>160g</strong></li>
-        <li>Riso integrale <strong>70g</strong> a crudo</li>
-        <li>Piselli primavera Findus <strong>150g</strong> saltati con cipolla · olio EVO <strong>10g</strong></li>
-      </ul>
-    </div>
-  </div>
-  <div class="day-total">
-    <span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~130g</span>
-  </div>
+      <ul class="ing"><li>Scaloppine di vitello al limone <strong>160g</strong></li><li>Riso integrale <strong>70g</strong> a crudo</li><li>Piselli Findus <strong>150g</strong> saltati con cipolla · olio EVO <strong>10g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~130g</span></div>
 </div>
-
-<!-- GIOVEDÌ -->
-<div class="panel" id="day-gio">
-  <div class="day-header">
-    <h2 class="day-title">Giovedì</h2>
-    <span class="sport-badge">⚽ Calcio 21:00–22:30</span>
-  </div>
+<div class="panel " id="day-gio-w1">
+  <div class="day-header"><h2 class="day-title">Giovedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
   <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
-  <div class="meals">
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🌅 Colazione — Pancakes</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~390 kcal</span></div></div>
-      <ul class="ing">
-        <li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong></li>
-        <li>Crema di nocciole 100% <strong>15g</strong> · cioccolato fondente 85%+ <strong>10g</strong> sciolto sopra</li>
-        <li>Caffè o tè senza zucchero</li>
-      </ul>
-    </div>
-    <div class="meal-card">
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~390 kcal</span></div></div>
+      <ul class="ing"><li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong></li><li>Crema di nocciole 100% <strong>15g</strong> · cioccolato fondente 85%+ <strong>10g</strong> sciolto</li></ul>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Pesche o prugne <strong>200g</strong> · noci <strong>12g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
-      <ul class="ing">
-        <li>Insalata di riso bianco <strong>80g</strong> a crudo (cotto in anticipo) con tonno <strong>100g</strong>, pomodorini <strong>80g</strong>, carote <strong>60g</strong>, olio EVO <strong>10g</strong></li>
-      </ul>
-      <div class="alt-note"><strong>Alt.:</strong> piadina integrale + galbanino 50g + rucola + pomodoro</div>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🥛 Spuntino pomeriggio</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di riso bianco <strong>80g</strong> a crudo (cotto la sera prima) con tonno <strong>100g</strong>, pomodorini <strong>80g</strong>, carote <strong>60g</strong>, olio EVO <strong>10g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> piadina + galbanino <strong>50g</strong> + rucola + pomodoro</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
-    </div>
-    <div class="meal-card sport-pre">
+    </div><div class="meal-card sport-pre">
       <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
-      <ul class="ing">
-        <li>Pane integrale <strong>60g</strong> con marmellata s. zuccheri <strong>20g</strong></li>
-        <li>1 banana <strong>100g</strong></li>
-      </ul>
-    </div>
-    <div class="meal-card post-sport">
+      <ul class="ing"><li>Pane integrale <strong>60g</strong> · marmellata s.zuccheri <strong>20g</strong></li><li>1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
       <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~460 kcal</span></div></div>
-      <ul class="ing">
-        <li>Merluzzo al forno <strong>180g</strong> con limone e prezzemolo</li>
-        <li>Riso bianco <strong>70g</strong> a crudo · zucchine al vapore <strong>150g</strong> · olio EVO <strong>8g</strong></li>
-      </ul>
-      <div class="alt-note"><strong>Alt.:</strong> lombo di maiale magro al forno <strong>150g</strong></div>
-    </div>
-  </div>
-  <div class="day-total">
-    <span class="total-chip">~1.850 kcal (sport)</span><span class="total-chip">Prot. ~135g</span>
-  </div>
+      <ul class="ing"><li>Merluzzo al forno <strong>180g</strong> con limone e prezzemolo</li><li>Riso bianco <strong>70g</strong> a crudo · zucchine <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> lombo di maiale magro <strong>150g</strong></div>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.850 kcal (sport)</span><span class="total-chip">Prot. ~135g</span></div>
 </div>
-
-<!-- VENERDÌ -->
-<div class="panel" id="day-ven">
+<div class="panel " id="day-ven-w1">
   <div class="day-header"><h2 class="day-title">Venerdì</h2></div>
-  <div class="meals">
-    <div class="meal-card">
+  
+  <div class="meals"><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~370 kcal</span></div></div>
-      <ul class="ing">
-        <li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li>
-        <li>1 banana <strong>100g</strong> o pesche <strong>150g</strong> · miele <strong>10g</strong></li>
-        <li>Caffè o tè senza zucchero</li>
-      </ul>
-    </div>
-    <div class="meal-card">
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>1 banana <strong>100g</strong> o pesche <strong>150g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Susine o albicocche <strong>180g</strong> · mandorle <strong>12g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
-      <ul class="ing">
-        <li>Piadina integrale <strong>60g</strong> con prosciutto crudo sgrassato <strong>80g</strong>, philadelphia light <strong>30g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li>
-        <li>Finocchio a bastoncini <strong>100g</strong></li>
-      </ul>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🥛 Spuntino pomeriggio</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con prosciutto crudo sgrassato <strong>80g</strong>, philadelphia light <strong>30g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li><li>Finocchio <strong>100g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~530 kcal</span></div></div>
-      <ul class="ing">
-        <li>Salmone al forno <strong>160g</strong> con limone ed erbe aromatiche</li>
-        <li>Patate dolci al forno <strong>200g</strong> · peperoni grigliati <strong>150g</strong> · olio EVO <strong>10g</strong></li>
-      </ul>
-    </div>
-    <div class="meal-card choc-card">
+      <ul class="ing"><li>Salmone al forno <strong>160g</strong> con limone ed erbe</li><li>Patate dolci al forno <strong>200g</strong> · peperoni grigliati <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
       <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
-      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong> — abbinabile a 5 mandorle per ~160 kcal totali</li></ul>
-    </div>
-  </div>
-  <div class="day-total">
-    <span class="total-chip">~1.810 kcal</span><span class="total-chip">Prot. ~128g</span>
-  </div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.810 kcal</span><span class="total-chip">Prot. ~128g</span></div>
 </div>
-
-<!-- SABATO -->
-<div class="panel" id="day-sab">
-  <div class="day-header">
-    <h2 class="day-title">Sabato</h2>
-    <span class="pizza-badge">🍕 Pizza diavola sera</span>
-  </div>
-  <div class="meals">
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🌅 Colazione — Pancakes</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~390 kcal</span></div></div>
-      <ul class="ing">
-        <li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong></li>
-        <li>Crema di pistacchio 100% <strong>20g</strong> · miele <strong>10g</strong></li>
-        <li>Caffè o tè senza zucchero</li>
-      </ul>
-    </div>
-    <div class="meal-card">
+<div class="panel " id="day-sab-w1">
+  <div class="day-header"><h2 class="day-title">Sabato</h2><span class="pizza-badge">🍕 Pizza diavola sera</span></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~390 kcal</span></div></div>
+      <ul class="ing"><li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong></li><li>Crema di pistacchio 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~120 kcal</span></div></div>
       <ul class="ing"><li>Pesche o melone <strong>200g</strong> · mandorle <strong>10g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🥗 Pranzo — leggero</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~420 kcal</span></div></div>
-      <ul class="ing">
-        <li>Insalata di farro <strong>70g</strong> con bresaola <strong>80g</strong>, rucola <strong>30g</strong>, pomodorini <strong>80g</strong>, olio EVO <strong>8g</strong></li>
-      </ul>
-      <div class="alt-note">Pranzo ridotto per bilanciare la pizza serale</div>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🥛 Spuntino pomeriggio</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di farro <strong>70g</strong> con bresaola <strong>80g</strong>, rucola <strong>30g</strong>, pomodorini <strong>80g</strong>, olio EVO <strong>8g</strong></li></ul><div class="alt-note">Pranzo ridotto per bilanciare la pizza</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
-    </div>
-    <div class="meal-card pizza-night">
+    </div><div class="meal-card pizza-night">
       <div class="meal-header"><span class="meal-name">🍕 Cena — Pizza diavola</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~640 kcal</span></div></div>
-      <ul class="ing">
-        <li>Pizza diavola media in pizzeria — goditi il momento!</li>
-        <li>Acqua o max 1 birra piccola / 1 bicchiere di vino</li>
-        <li>Salta antipasto fritto e dolce</li>
-      </ul>
-    </div>
-  </div>
-  <div class="day-total">
-    <span class="total-chip">~1.700 kcal ✓</span>
-  </div>
+      <ul class="ing"><li>Pizza diavola media in pizzeria</li><li>Acqua o max 1 bicchiere di vino/birra</li><li>Salta antipasti fritti e dolce</li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal ✓</span></div>
 </div>
-
-<!-- DOMENICA -->
-<div class="panel" id="day-dom">
+<div class="panel " id="day-dom-w1">
   <div class="day-header"><h2 class="day-title">Domenica</h2></div>
-  <div class="meals">
-    <div class="meal-card">
+  
+  <div class="meals"><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~370 kcal</span></div></div>
-      <ul class="ing">
-        <li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li>
-        <li>Fragole <strong>120g</strong> o ciliegie — alt: nettarine, pesche · miele <strong>10g</strong></li>
-        <li>Caffè o tè senza zucchero</li>
-      </ul>
-    </div>
-    <div class="meal-card">
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Fragole <strong>120g</strong> o ciliegie — alt: nettarine · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>1 mela o pera <strong>150g</strong> · noci <strong>12g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🍝 Pranzo domenicale</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~580 kcal</span></div></div>
-      <ul class="ing">
-        <li>Pasta integrale <strong>80g</strong> al sugo di pomodoro fresco e basilico</li>
-        <li>Costolette di maiale magre al forno <strong>140g</strong> con erbe</li>
-        <li>Melanzane alla piastra <strong>150g</strong> · olio EVO <strong>10g</strong></li>
-      </ul>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-name">🥛 Spuntino pomeriggio</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> al sugo pomodoro fresco e basilico</li><li>Costolette di maiale magre al forno <strong>140g</strong></li><li>Melanzane alla piastra <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
       <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
-    </div>
-    <div class="meal-card">
+    </div><div class="meal-card ">
       <div class="meal-header"><span class="meal-name">🌙 Cena leggera</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~490 kcal</span></div></div>
-      <ul class="ing">
-        <li>Merluzzo al forno <strong>180g</strong> con limone e prezzemolo</li>
-        <li>Zucchine grigliate <strong>150g</strong> + peperoni <strong>100g</strong></li>
-        <li>Pane integrale <strong>40g</strong> · olio EVO <strong>8g</strong></li>
-      </ul>
-    </div>
-  </div>
-  <div class="day-total">
-    <span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~130g</span>
-  </div>
+      <ul class="ing"><li>Merluzzo al forno <strong>180g</strong> con limone e prezzemolo</li><li>Zucchine grigliate <strong>150g</strong> + peperoni <strong>100g</strong></li><li>Pane integrale <strong>40g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~130g</span></div>
+</div>
+<div class="panel " id="day-lun-w2">
+  <div class="day-header"><h2 class="day-title">Lunedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
+  <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~385 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Ciliegie o albicocche <strong>120g</strong> · miele <strong>10g</strong></li><li>Caffè o tè</li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~135 kcal</span></div></div>
+      <ul class="ing"><li>1 pera <strong>150g</strong> · mandorle <strong>15g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~535 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di riso bianco <strong>80g</strong> (cotto la sera prima) con prosciutto cotto <strong>90g</strong>, pomodorini <strong>80g</strong>, carote <strong>60g</strong></li><li>Olio EVO <strong>10g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> tonno al naturale <strong>100g</strong> al posto del prosciutto</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card sport-pre">
+      <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>40g</strong> con latte · 1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
+      <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~460 kcal</span></div></div>
+      <ul class="ing"><li>Petto di tacchino alla griglia <strong>160g</strong></li><li>Riso bianco <strong>70g</strong> a crudo</li><li>Piselli Findus <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> bresaola <strong>100g</strong></div>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.845 kcal (sport)</span><span class="total-chip">Prot. ~133g</span></div>
+</div>
+<div class="panel " id="day-mar-w2">
+  <div class="day-header"><h2 class="day-title">Martedì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes albume</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~380 kcal</span></div></div>
+      <ul class="ing"><li>Albume pastorizzato <strong>120ml</strong> + avena <strong>50g</strong> + latte <strong>30ml</strong> + lievito <strong>3g</strong></li><li>Crema di mandorle 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Nettarine <strong>200g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~545 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con galbanino <strong>50g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong>, philadelphia light <strong>20g</strong></li><li>Carote baby <strong>100g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~510 kcal</span></div></div>
+      <ul class="ing"><li>Lonza di maiale magra al forno <strong>160g</strong> con rosmarino</li><li>Patate al forno <strong>180g</strong></li><li>Peperoni grigliati <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
+      <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.805 kcal</span><span class="total-chip">Prot. ~127g</span></div>
+</div>
+<div class="panel " id="day-mer-w2">
+  <div class="day-header"><h2 class="day-title">Mercoledì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~360 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>200g</strong> · granola integrale <strong>30g</strong></li><li>Pesche <strong>120g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Susine <strong>180g</strong> · mandorle <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di farro <strong>80g</strong> (cotto la sera prima) con bresaola <strong>80g</strong>, finocchio <strong>80g</strong>, pomodorini <strong>80g</strong></li><li>Scamorza light <strong>40g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🧀 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~140 kcal</span></div></div>
+      <ul class="ing"><li>3 gallette di riso <strong>30g</strong> + ricotta magra <strong>60g</strong> + miele <strong>8g</strong></li></ul><div class="alt-note">Yogurt già a colazione → alternativa</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~530 kcal</span></div></div>
+      <ul class="ing"><li>Branzino al forno <strong>180g</strong> con limone ed erbe</li><li>Riso integrale <strong>70g</strong> a crudo</li><li>Zucchine trifolate <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~132g</span></div>
+</div>
+<div class="panel " id="day-gio-w2">
+  <div class="day-header"><h2 class="day-title">Giovedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
+  <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes albume</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~385 kcal</span></div></div>
+      <ul class="ing"><li>Albume pastorizzato <strong>120ml</strong> + avena <strong>50g</strong> + latte <strong>30ml</strong> + lievito <strong>3g</strong></li><li>Burro di arachidi 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Ciliegie <strong>180g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> (cotta la sera prima) con prosciutto crudo sgrassato <strong>70g</strong>, zucchine <strong>80g</strong>, olio EVO <strong>10g</strong></li><li>Carote <strong>80g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card sport-pre">
+      <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
+      <ul class="ing"><li>Pane integrale <strong>60g</strong> · marmellata s.zuccheri <strong>20g</strong></li><li>1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
+      <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~460 kcal</span></div></div>
+      <ul class="ing"><li>Petto di pollo al forno <strong>160g</strong> con paprika</li><li>Riso bianco <strong>70g</strong> · spinaci surgelati <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.845 kcal (sport)</span><span class="total-chip">Prot. ~134g</span></div>
+</div>
+<div class="panel " id="day-ven-w2">
+  <div class="day-header"><h2 class="day-title">Venerdì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~375 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Albicocche <strong>150g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>1 mela <strong>150g</strong> · mandorle <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con petto di tacchino grigliato <strong>90g</strong>, mozzarella light <strong>50g</strong>, pomodoro <strong>80g</strong>, rucola <strong>30g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~530 kcal</span></div></div>
+      <ul class="ing"><li>Salmone al vapore <strong>160g</strong> con limone e aneto</li><li>Quinoa <strong>70g</strong> a crudo</li><li>Fagiolini al vapore <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
+      <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.815 kcal</span><span class="total-chip">Prot. ~129g</span></div>
+</div>
+<div class="panel " id="day-sab-w2">
+  <div class="day-header"><h2 class="day-title">Sabato</h2><span class="pizza-badge">🍕 Pizza diavola sera</span></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~390 kcal</span></div></div>
+      <ul class="ing"><li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong></li><li>Crema di nocciole 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~120 kcal</span></div></div>
+      <ul class="ing"><li>Melone <strong>200g</strong> · mandorle <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo — leggero</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~420 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di riso bianco <strong>70g</strong> con prosciutto crudo <strong>70g</strong>, pomodorini <strong>80g</strong>, olio EVO <strong>8g</strong></li></ul><div class="alt-note">Pranzo ridotto per bilanciare la pizza</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card pizza-night">
+      <div class="meal-header"><span class="meal-name">🍕 Cena — Pizza diavola</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~640 kcal</span></div></div>
+      <ul class="ing"><li>Pizza diavola media in pizzeria</li><li>Acqua o max 1 bicchiere di vino/birra</li><li>Salta antipasti fritti e dolce</li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal ✓</span></div>
+</div>
+<div class="panel " id="day-dom-w2">
+  <div class="day-header"><h2 class="day-title">Domenica</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~370 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Nettarine <strong>150g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Ciliegie <strong>150g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍝 Pranzo domenicale</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~575 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> con sugo di pomodoro e peperoni</li><li>Hamburger di vitello <strong>150g</strong> alla piastra</li><li>Insalata di rucola · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena leggera</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~495 kcal</span></div></div>
+      <ul class="ing"><li>Merluzzo al cartoccio <strong>180g</strong> con olive, capperi, pomodorini</li><li>Patate dolci al forno <strong>180g</strong></li><li>Spinaci saltati <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~130g</span></div>
+</div>
+<div class="panel " id="day-lun-w3">
+  <div class="day-header"><h2 class="day-title">Lunedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
+  <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~375 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Melone <strong>150g</strong> · miele <strong>10g</strong></li><li>Caffè o tè</li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~135 kcal</span></div></div>
+      <ul class="ing"><li>Albicocche <strong>200g</strong> · mandorle <strong>15g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di farro <strong>80g</strong> (cotto la sera) con tonno <strong>100g</strong>, finocchio <strong>80g</strong>, pomodorini <strong>80g</strong>, olio EVO <strong>10g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> petto di tacchino <strong>90g</strong> al posto del tonno</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card sport-pre">
+      <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
+      <ul class="ing"><li>Pane integrale <strong>60g</strong> · marmellata s.zuccheri <strong>20g</strong></li><li>1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
+      <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~465 kcal</span></div></div>
+      <ul class="ing"><li>Lonza di maiale magra <strong>160g</strong> al forno con erbe</li><li>Riso bianco <strong>70g</strong> a crudo</li><li>Broccoli al vapore <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.845 kcal (sport)</span><span class="total-chip">Prot. ~134g</span></div>
+</div>
+<div class="panel " id="day-mar-w3">
+  <div class="day-header"><h2 class="day-title">Martedì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes albume</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~380 kcal</span></div></div>
+      <ul class="ing"><li>Albume pastorizzato <strong>120ml</strong> + avena <strong>50g</strong> + latte <strong>30ml</strong> + lievito <strong>3g</strong></li><li>Tahini <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>1 pesca <strong>180g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con bresaola <strong>80g</strong>, philadelphia light <strong>30g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li><li>Carote baby <strong>100g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~515 kcal</span></div></div>
+      <ul class="ing"><li>Scaloppine di vitello al limone <strong>160g</strong></li><li>Riso integrale <strong>70g</strong> a crudo</li><li>Fagiolini al vapore <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
+      <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.805 kcal</span><span class="total-chip">Prot. ~128g</span></div>
+</div>
+<div class="panel " id="day-mer-w3">
+  <div class="day-header"><h2 class="day-title">Mercoledì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~365 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>200g</strong> · granola integrale <strong>30g</strong></li><li>Anguria <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Susine <strong>180g</strong> · mandorle <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~545 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> (cotta la sera) con prosciutto cotto <strong>80g</strong>, piselli Findus <strong>80g</strong>, olio EVO <strong>10g</strong></li><li>Finocchio <strong>100g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🧀 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Galbanino <strong>50g</strong> + carote <strong>120g</strong></li></ul><div class="alt-note">Yogurt già a colazione → alternativa</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~530 kcal</span></div></div>
+      <ul class="ing"><li>Salmone in crosta di pistacchi <strong>160g</strong></li><li>Patate dolci al forno <strong>180g</strong></li><li>Zucchine grigliate <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~131g</span></div>
+</div>
+<div class="panel " id="day-gio-w3">
+  <div class="day-header"><h2 class="day-title">Giovedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
+  <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes albume</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~385 kcal</span></div></div>
+      <ul class="ing"><li>Albume pastorizzato <strong>120ml</strong> + avena <strong>50g</strong> + latte <strong>30ml</strong> + lievito <strong>3g</strong></li><li>Crema di pistacchio 100% <strong>15g</strong> · cioccolato fondente 85%+ <strong>10g</strong> sciolto</li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Melone <strong>200g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di riso bianco <strong>80g</strong> (cotto la sera) con tonno <strong>100g</strong>, melanzane grigliate <strong>80g</strong>, pomodorini <strong>60g</strong></li><li>Olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card sport-pre">
+      <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
+      <ul class="ing"><li>Pane integrale <strong>60g</strong> · marmellata s.zuccheri <strong>20g</strong></li><li>1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
+      <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~460 kcal</span></div></div>
+      <ul class="ing"><li>Petto di pollo al limone <strong>160g</strong></li><li>Riso bianco <strong>70g</strong> · spinaci surgelati <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.845 kcal (sport)</span><span class="total-chip">Prot. ~135g</span></div>
+</div>
+<div class="panel " id="day-ven-w3">
+  <div class="day-header"><h2 class="day-title">Venerdì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~370 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Ciliegie <strong>120g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Prugne <strong>180g</strong> · mandorle <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con petto di pollo grigliato <strong>90g</strong> (avanzato dalla cena), scamorza <strong>40g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~530 kcal</span></div></div>
+      <ul class="ing"><li>Costolette di maiale al forno con rosmarino <strong>150g</strong></li><li>Patate al forno <strong>180g</strong></li><li>Melanzane grigliate <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
+      <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.810 kcal</span><span class="total-chip">Prot. ~128g</span></div>
+</div>
+<div class="panel " id="day-sab-w3">
+  <div class="day-header"><h2 class="day-title">Sabato</h2><span class="pizza-badge">🍕 Pizza diavola sera</span></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~390 kcal</span></div></div>
+      <ul class="ing"><li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong></li><li>Crema di mandorle 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~120 kcal</span></div></div>
+      <ul class="ing"><li>Anguria <strong>250g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo — leggero</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~415 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di farro <strong>70g</strong> con prosciutto crudo <strong>70g</strong>, rucola <strong>30g</strong>, pomodorini <strong>80g</strong>, olio EVO <strong>8g</strong></li></ul><div class="alt-note">Pranzo ridotto per bilanciare la pizza</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card pizza-night">
+      <div class="meal-header"><span class="meal-name">🍕 Cena — Pizza diavola</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~640 kcal</span></div></div>
+      <ul class="ing"><li>Pizza diavola media in pizzeria</li><li>Acqua o max 1 bicchiere</li><li>Salta antipasti fritti e dolce</li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.695 kcal ✓</span></div>
+</div>
+<div class="panel " id="day-dom-w3">
+  <div class="day-header"><h2 class="day-title">Domenica</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~365 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Pesche <strong>150g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Nettarine <strong>180g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍝 Pranzo domenicale</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~580 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> con sugo di melanzane e pomodoro</li><li>Lonza di maiale magra al forno <strong>150g</strong></li><li>Peperoni grigliati <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena leggera</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~495 kcal</span></div></div>
+      <ul class="ing"><li>Salmone al forno <strong>160g</strong> con erbe e limone</li><li>Riso integrale <strong>70g</strong> · broccoli al vapore <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~131g</span></div>
+</div>
+<div class="panel " id="day-lun-w4">
+  <div class="day-header"><h2 class="day-title">Lunedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
+  <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~380 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>1 banana <strong>100g</strong> · crema di mandorle 100% <strong>10g</strong></li><li>Caffè o tè</li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~135 kcal</span></div></div>
+      <ul class="ing"><li>Prugne <strong>180g</strong> · mandorle <strong>15g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di riso bianco <strong>80g</strong> (cotto la sera) con salmone affumicato <strong>80g</strong>, capperi, limone, rucola <strong>30g</strong></li><li>Olio EVO <strong>10g</strong></li></ul><div class="alt-note"><strong>Alt.:</strong> tonno o prosciutto crudo <strong>80g</strong></div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card sport-pre">
+      <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
+      <ul class="ing"><li>Pane integrale <strong>60g</strong> · marmellata s.zuccheri <strong>20g</strong></li><li>1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
+      <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~460 kcal</span></div></div>
+      <ul class="ing"><li>Petto di tacchino al forno <strong>160g</strong> con erbe aromatiche</li><li>Riso bianco <strong>70g</strong> · piselli Findus <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.845 kcal (sport)</span><span class="total-chip">Prot. ~134g</span></div>
+</div>
+<div class="panel " id="day-mar-w4">
+  <div class="day-header"><h2 class="day-title">Martedì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes albume</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~385 kcal</span></div></div>
+      <ul class="ing"><li>Albume pastorizzato <strong>120ml</strong> + avena <strong>50g</strong> + latte <strong>30ml</strong> + lievito <strong>3g</strong></li><li>Crema di nocciole 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Kiwi <strong>2</strong> (~160g) · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~545 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con petto di pollo grigliato <strong>90g</strong>, philadelphia light <strong>30g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li><li>Finocchio <strong>100g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~510 kcal</span></div></div>
+      <ul class="ing"><li>Hamburger di vitello <strong>150g</strong> alla piastra</li><li>Quinoa <strong>70g</strong> a crudo</li><li>Peperoni e zucchine grigliati <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
+      <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.810 kcal</span><span class="total-chip">Prot. ~127g</span></div>
+</div>
+<div class="panel " id="day-mer-w4">
+  <div class="day-header"><h2 class="day-title">Mercoledì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~365 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>200g</strong> · granola integrale <strong>30g</strong></li><li>Fragole <strong>120g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>1 mela <strong>150g</strong> · mandorle <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~545 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di farro <strong>80g</strong> (cotto la sera) con prosciutto cotto <strong>80g</strong>, melanzane grigliate <strong>80g</strong>, mozzarella light <strong>50g</strong></li><li>Olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🧀 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Scamorza light <strong>40g</strong> + 3 gallette <strong>30g</strong></li></ul><div class="alt-note">Yogurt già a colazione → alternativa</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~530 kcal</span></div></div>
+      <ul class="ing"><li>Merluzzo al forno con pomodorini e olive <strong>180g</strong></li><li>Riso integrale <strong>70g</strong> a crudo</li><li>Spinaci saltati <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~130g</span></div>
+</div>
+<div class="panel " id="day-gio-w4">
+  <div class="day-header"><h2 class="day-title">Giovedì</h2><span class="sport-badge">⚽ Calcio 21:00–22:30</span></div>
+  <div class="sport-info">Giorno di calcio (+200 kcal). Spuntino pre-sport 19:00. Cena post-sport entro 23:30.</div>
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes albume</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~385 kcal</span></div></div>
+      <ul class="ing"><li>Albume pastorizzato <strong>120ml</strong> + avena <strong>50g</strong> + latte <strong>30ml</strong> + lievito <strong>3g</strong></li><li>Crema di mandorle 100% <strong>15g</strong> · cioccolato fondente 85%+ <strong>10g</strong> sciolto</li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Pesche <strong>200g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> (cotta la sera) con tonno <strong>100g</strong>, peperoni grigliati <strong>80g</strong>, olio EVO <strong>10g</strong></li><li>Carote <strong>80g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card sport-pre">
+      <div class="meal-header"><span class="meal-name">⚡ Pre-sport</span><div class="meal-meta"><span class="meal-time">19:00</span><span class="kcal-tag">~200 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>40g</strong> con latte · 1 banana <strong>100g</strong></li></ul>
+    </div><div class="meal-card post-sport">
+      <div class="meal-header"><span class="meal-name">🌙 Cena post-sport</span><div class="meal-meta"><span class="meal-time">23:00–23:30</span><span class="kcal-tag">~460 kcal</span></div></div>
+      <ul class="ing"><li>Petto di pollo in padella <strong>160g</strong></li><li>Riso bianco <strong>70g</strong> · fagiolini <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.845 kcal (sport)</span><span class="total-chip">Prot. ~135g</span></div>
+</div>
+<div class="panel " id="day-ven-w4">
+  <div class="day-header"><h2 class="day-title">Venerdì</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:00</span><span class="kcal-tag">~370 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Anguria <strong>200g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Albicocche <strong>200g</strong> · mandorle <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥙 Pranzo</span><div class="meal-meta"><span class="meal-time">13:00–13:30</span><span class="kcal-tag">~540 kcal</span></div></div>
+      <ul class="ing"><li>Piadina integrale <strong>60g</strong> con bresaola <strong>80g</strong>, galbanino <strong>40g</strong>, rucola <strong>30g</strong>, pomodoro <strong>80g</strong></li><li>Finocchio <strong>100g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~530 kcal</span></div></div>
+      <ul class="ing"><li>Branzino al forno <strong>180g</strong> con limone e timo</li><li>Patate al forno <strong>180g</strong></li><li>Zucchine trifolate <strong>150g</strong> · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card choc-card">
+      <div class="meal-header"><span class="meal-name">🍫 Dopo cena</span><div class="meal-meta"><span class="meal-time">21:00</span><span class="kcal-tag">~110 kcal</span></div></div>
+      <ul class="ing"><li>Cioccolato fondente 80%+ <strong>20g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.810 kcal</span><span class="total-chip">Prot. ~130g</span></div>
+</div>
+<div class="panel " id="day-sab-w4">
+  <div class="day-header"><h2 class="day-title">Sabato</h2><span class="pizza-badge">🍕 Pizza diavola sera</span></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colaz. — Pancakes</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~390 kcal</span></div></div>
+      <ul class="ing"><li>Avena <strong>50g</strong> + 2 uova + latte <strong>50ml</strong></li><li>Burro di arachidi 100% <strong>20g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍑 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~120 kcal</span></div></div>
+      <ul class="ing"><li>Ciliegie <strong>180g</strong> · mandorle <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥗 Pranzo — leggero</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~420 kcal</span></div></div>
+      <ul class="ing"><li>Insalata di riso bianco <strong>70g</strong> con tonno <strong>80g</strong>, pomodorini <strong>80g</strong>, olio EVO <strong>8g</strong></li></ul><div class="alt-note">Pranzo ridotto per bilanciare la pizza</div>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card pizza-night">
+      <div class="meal-header"><span class="meal-name">🍕 Cena — Pizza diavola</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~640 kcal</span></div></div>
+      <ul class="ing"><li>Pizza diavola media in pizzeria</li><li>Acqua o max 1 bicchiere</li><li>Salta antipasti fritti e dolce</li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal ✓</span></div>
+</div>
+<div class="panel " id="day-dom-w4">
+  <div class="day-header"><h2 class="day-title">Domenica</h2></div>
+  
+  <div class="meals"><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌅 Colazione</span><div class="meal-meta"><span class="meal-time">08:30</span><span class="kcal-tag">~370 kcal</span></div></div>
+      <ul class="ing"><li>Fiocchi d'avena <strong>50g</strong> con latte <strong>150ml</strong></li><li>Pesche <strong>150g</strong> · miele <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍎 Spuntino mattina</span><div class="meal-meta"><span class="meal-time">11:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Anguria <strong>250g</strong> · noci <strong>12g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🍝 Pranzo domenicale</span><div class="meal-meta"><span class="meal-time">13:00</span><span class="kcal-tag">~580 kcal</span></div></div>
+      <ul class="ing"><li>Pasta integrale <strong>80g</strong> al sugo con zucchine e pomodorini</li><li>Costolette di maiale al forno <strong>150g</strong></li><li>Insalata di rucola · olio EVO <strong>10g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🥛 Spuntino pom.</span><div class="meal-meta"><span class="meal-time">16:00</span><span class="kcal-tag">~130 kcal</span></div></div>
+      <ul class="ing"><li>Yogurt greco 0% <strong>150g</strong> · miele <strong>8g</strong></li></ul>
+    </div><div class="meal-card ">
+      <div class="meal-header"><span class="meal-name">🌙 Cena leggera</span><div class="meal-meta"><span class="meal-time">20:00</span><span class="kcal-tag">~490 kcal</span></div></div>
+      <ul class="ing"><li>Salmone al vapore <strong>160g</strong></li><li>Quinoa <strong>70g</strong> a crudo · fagiolini <strong>150g</strong> · olio EVO <strong>8g</strong></li></ul>
+    </div></div>
+  <div class="day-total"><span class="total-chip">~1.700 kcal</span><span class="total-chip">Prot. ~130g</span></div>
 </div>
 
 <!-- SPUNTINI -->
@@ -615,7 +883,6 @@ ul.ing li::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;
     <div class="snack-card"><div class="snack-title">Gallette + miele + banana</div><div class="snack-kcal">~195 kcal</div><ul class="snack-items"><li>2 gallette di riso (20g)</li><li>Miele (15g) · 1 banana (100g)</li></ul></div>
   </div>
 </div>
-
 <!-- RICETTE -->
 <div class="panel" id="tab-ricette">
   <div class="panel-header">
@@ -772,7 +1039,6 @@ ul.ing li::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;
     </div>
   </div>
 </div>
-
 <!-- CONSIGLI -->
 <div class="panel" id="tab-consigli">
   <div class="panel-header">
@@ -794,7 +1060,6 @@ ul.ing li::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;
     <div class="tip-card"><div class="tip-icon">📦</div><div class="tip-title">Contenitori ufficio</div><div class="tip-text">Investi in 3–4 contenitori ermetici da 1L. Pasta, riso, farro e piadine si conservano bene 24h in frigo.</div></div>
   </div>
 </div>
-
 <!-- LISTA SPESA -->
 <div class="panel" id="tab-spesa">
   <div class="panel-header">
@@ -919,97 +1184,337 @@ ul.ing li::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;
     </div>
   </div>
 </div>
-
+<!-- COMPARATORE -->
+<div class="panel" id="tab-comparatore">
+  <div class="panel-header">
+    <h2 class="panel-title">Comparatore alimenti</h2>
+    <p class="panel-sub">Seleziona un alimento e la quantità a sinistra — l'app calcola la quantità equivalente a destra per sostituirlo nel pasto, a parità di calorie.</p>
+  </div>
+  <div class="comp-cat-tabs">
+    <button class="comp-cat-btn ccat-on" onclick="setCat('proteine',this)">Proteine</button>
+    <button class="comp-cat-btn" onclick="setCat('carboidrati',this)">Carboidrati</button>
+    <button class="comp-cat-btn" onclick="setCat('grassi',this)">Grassi / Condimenti</button>
+    <button class="comp-cat-btn" onclick="setCat('frutta',this)">Frutta</button>
+    <button class="comp-cat-btn" onclick="setCat('verdure',this)">Verdure</button>
+  </div>
+  <div class="comp-wrapper">
+    <div class="comp-side">
+      <h3>Alimento di partenza</h3>
+      <select class="comp-select" id="food-a" onchange="compute()"></select>
+      <input class="comp-input" id="qty-a" type="number" min="1" max="1000" value="100" placeholder="Grammi" oninput="compute()">
+      <div class="comp-info" id="info-a">—</div>
+    </div>
+    <div class="comp-arrow">
+      <span class="comp-arrow-icon">⇄</span>
+    </div>
+    <div class="comp-side">
+      <h3>Alimento sostituto</h3>
+      <select class="comp-select" id="food-b" onchange="compute()"></select>
+      <div class="comp-info" id="info-b">—</div>
+    </div>
+  </div>
+  <div class="comp-result" id="comp-result" style="display:none">
+    <div class="comp-result-title">Quantità equivalente</div>
+    <div class="comp-result-val" id="result-qty">—</div>
+    <div class="comp-result-sub" id="result-sub">—</div>
+    <div class="comp-result-macros" id="result-macros"></div>
+  </div>
+  <p class="comp-note">I valori sono per 100g di prodotto crudo/tal quale, salvo dove indicato. Le calorie sono indicative e possono variare per marca e metodo di cottura.</p>
+</div>
 </main>
 </div>
-
 <!-- BOTTOM NAV (mobile) -->
 <nav class="bottom-nav" id="bottomNav">
   <button id="bn-menu" class="bn-on" onclick="bnClick('lun','bn-menu')">
     <span class="bi">📅</span>Menu
   </button>
   <button id="bn-spuntini" onclick="bnClick('spuntini','bn-spuntini')">
-    <span class="bi">🍎</span>Spuntini
+    <span class="bi">🍎</span>Snack
   </button>
   <button id="bn-ricette" onclick="bnClick('ricette','bn-ricette')">
     <span class="bi">👨‍🍳</span>Ricette
   </button>
-  <button id="bn-consigli" onclick="bnClick('consigli','bn-consigli')">
-    <span class="bi">💡</span>Consigli
+  <button id="bn-comparatore" onclick="bnClick('comparatore','bn-comparatore')">
+    <span class="bi">⚖️</span>Compare
   </button>
   <button id="bn-spesa" onclick="bnClick('spesa','bn-spesa')">
     <span class="bi">🛒</span>Spesa
   </button>
 </nav>
-
 <script>
+// ============================================================
+// FOOD DATABASE (kcal per 100g, protein g, carb g, fat g)
+// ============================================================
+var FOODS = {
+  proteine: {
+    label: "Proteine",
+    items: {
+      "Petto di pollo": {k:110, p:23, c:0, f:1.5},
+      "Petto di tacchino": {k:109, p:22, c:0, f:2},
+      "Lombo di maiale magro": {k:143, p:22, c:0, f:6},
+      "Costolette di maiale magre": {k:150, p:20, c:0, f:7},
+      "Hamburger di vitello": {k:155, p:20, c:0, f:8},
+      "Scaloppine di vitello": {k:120, p:22, c:0, f:3},
+      "Salmone": {k:208, p:20, c:0, f:13},
+      "Merluzzo": {k:82, p:18, c:0, f:0.7},
+      "Branzino": {k:97, p:18, c:0, f:2.5},
+      "Tonno al naturale": {k:100, p:23, c:0, f:1},
+      "Bresaola": {k:175, p:33, c:0.5, f:4},
+      "Prosciutto cotto sgrassato": {k:130, p:18, c:1, f:6},
+      "Prosciutto crudo sgrassato": {k:160, p:25, c:0, f:6.5},
+      "Uova intere": {k:143, p:13, c:0.7, f:10},
+      "Albume pastorizzato": {k:52, p:11, c:0.7, f:0.2},
+      "Mozzarella light": {k:190, p:18, c:2, f:12},
+      "Galbanino": {k:270, p:22, c:0, f:20},
+      "Scamorza light": {k:220, p:28, c:0, f:12},
+      "Philadelphia light": {k:140, p:7, c:4, f:10},
+      "Yogurt greco 0%": {k:57, p:10, c:4, f:0.3},
+      "Ricotta magra": {k:136, p:11, c:3, f:9},
+      "Fiocchi di latte": {k:85, p:12, c:3, f:2}
+    }
+  },
+  carboidrati: {
+    label: "Carboidrati",
+    items: {
+      "Pasta integrale (cruda)": {k:342, p:13, c:65, f:3},
+      "Pasta bianca (cruda)": {k:356, p:12, c:72, f:1.5},
+      "Riso integrale (crudo)": {k:350, p:8, c:74, f:2.5},
+      "Riso bianco (crudo)": {k:358, p:7, c:79, f:0.6},
+      "Farro (crudo)": {k:338, p:14, c:66, f:2.5},
+      "Quinoa (cruda)": {k:368, p:14, c:64, f:6},
+      "Fiocchi d'avena": {k:367, p:13, c:62, f:7},
+      "Pane integrale": {k:224, p:8, c:42, f:3},
+      "Pane bianco": {k:265, p:8, c:52, f:2},
+      "Piadina integrale": {k:283, p:9, c:50, f:6},
+      "Gallette di riso": {k:381, p:7, c:82, f:2},
+      "Patate": {k:77, p:2, c:17, f:0.1},
+      "Patate dolci": {k:86, p:1.6, c:20, f:0.1},
+      "Legumi cotti (ceci)": {k:164, p:9, c:27, f:3},
+      "Legumi cotti (lenticchie)": {k:116, p:9, c:20, f:0.4},
+      "Granola integrale": {k:400, p:9, c:60, f:14}
+    }
+  },
+  grassi: {
+    label: "Grassi / Condimenti",
+    items: {
+      "Olio EVO": {k:884, p:0, c:0, f:100},
+      "Olio di semi": {k:884, p:0, c:0, f:100},
+      "Mandorle": {k:579, p:21, c:10, f:50},
+      "Noci": {k:654, p:15, c:7, f:65},
+      "Pistacchi": {k:562, p:20, c:18, f:45},
+      "Crema di mandorle 100%": {k:614, p:21, c:11, f:56},
+      "Burro di arachidi 100%": {k:588, p:25, c:12, f:50},
+      "Crema di nocciole 100%": {k:650, p:15, c:14, f:61},
+      "Tahini (sesamo)": {k:595, p:17, c:21, f:54},
+      "Miele": {k:304, p:0.3, c:82, f:0},
+      "Marmellata s.zuccheri": {k:120, p:0.5, c:30, f:0.2},
+      "Cioccolato fondente 80%+": {k:598, p:8, c:34, f:46},
+      "Cioccolato fondente 85%+": {k:575, p:9, c:27, f:48}
+    }
+  },
+  frutta: {
+    label: "Frutta",
+    items: {
+      "Banana": {k:89, p:1.1, c:23, f:0.3},
+      "Mela": {k:52, p:0.3, c:14, f:0.2},
+      "Pera": {k:57, p:0.4, c:15, f:0.1},
+      "Pesca": {k:39, p:0.9, c:10, f:0.3},
+      "Nettarina": {k:44, p:1.1, c:11, f:0.3},
+      "Albicocca": {k:48, p:1.4, c:11, f:0.4},
+      "Prugna/Susina": {k:46, p:0.7, c:11, f:0.3},
+      "Fragole": {k:32, p:0.7, c:8, f:0.3},
+      "Ciliegie": {k:63, p:1.1, c:16, f:0.2},
+      "Melone": {k:34, p:0.8, c:8, f:0.2},
+      "Anguria": {k:30, p:0.6, c:8, f:0.2},
+      "Arancia": {k:47, p:0.9, c:12, f:0.1},
+      "Kiwi": {k:61, p:1.1, c:15, f:0.5}
+    }
+  },
+  verdure: {
+    label: "Verdure",
+    items: {
+      "Zucchine": {k:17, p:1.2, c:3.6, f:0.3},
+      "Melanzane": {k:25, p:1, c:6, f:0.2},
+      "Peperoni": {k:31, p:1, c:7, f:0.3},
+      "Pomodorini": {k:18, p:0.9, c:3.9, f:0.2},
+      "Carote": {k:41, p:0.9, c:10, f:0.2},
+      "Finocchio": {k:31, p:1.2, c:7, f:0.2},
+      "Spinaci": {k:23, p:2.9, c:3.6, f:0.4},
+      "Piselli (surgelati)": {k:77, p:5, c:14, f:0.4},
+      "Rucola": {k:25, p:2.6, c:3.7, f:0.7},
+      "Broccoli": {k:34, p:2.8, c:7, f:0.4},
+      "Fagiolini": {k:31, p:1.8, c:7, f:0.2},
+      "Insalata mista": {k:15, p:1.4, c:2.9, f:0.2},
+      "Cipolla": {k:40, p:1.1, c:9, f:0.1},
+      "Meloncelle (cetriolo)": {k:16, p:0.7, c:3.6, f:0.1}
+    }
+  }
+};
+
+
+var currentWeek = 1;
+var currentDay = 'lun';
 var days = ['lun','mar','mer','gio','ven','sab','dom'];
+var currentCat = 'proteine';
 
 function hideAll() {
-  var panels = document.querySelectorAll('.panel');
-  for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
-  var btns = document.querySelectorAll('.nav-btn');
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].classList.remove('active-day');
-    btns[i].classList.remove('active-tab');
-  }
+  var p = document.querySelectorAll('.panel');
+  for(var i=0;i<p.length;i++) p[i].classList.remove('active');
+  var b = document.querySelectorAll('.nav-btn');
+  for(var i=0;i<b.length;i++){b[i].classList.remove('active-day');b[i].classList.remove('active-tab');}
 }
 
-function showDay(id, btn) {
+function setWeek(n, btn) {
+  currentWeek = n;
+  // sync sidebar buttons
+  var wb = document.querySelectorAll('.wk-btn');
+  for(var i=0;i<wb.length;i++) wb[i].classList.remove('wk-active');
+  // sync top bar pills
+  var wp = document.querySelectorAll('.wk-pill');
+  for(var i=0;i<wp.length;i++) wp[i].classList.remove('wk-pill-on');
+  // activate matching pill and sidebar btn by week number
+  if(wp[n-1]) wp[n-1].classList.add('wk-pill-on');
+  if(wb[n-1]) wb[n-1].classList.add('wk-active');
+  showDayW(currentDay, document.getElementById('sb-'+currentDay));
+}
+
+function showDayW(day, btn) {
+  currentDay = day;
   hideAll();
-  document.getElementById('day-' + id).classList.add('active');
-  if (btn) btn.classList.add('active-day');
+  var id = 'day-' + day + '-w' + currentWeek;
+  var el = document.getElementById(id);
+  if(el) el.classList.add('active');
+  var sbs = document.querySelectorAll('.nav-btn[id^="sb-"]');
+  for(var i=0;i<sbs.length;i++) sbs[i].classList.remove('active-day');
+  var sbEl = document.getElementById('sb-' + day);
+  if(sbEl) sbEl.classList.add('active-day');
   setBnActive('bn-menu');
 }
 
 function showTab(id, btn) {
   hideAll();
-  document.getElementById('tab-' + id).classList.add('active');
-  if (btn) btn.classList.add('active-tab');
+  var el = document.getElementById('tab-' + id);
+  if(el) el.classList.add('active');
+  if(btn) btn.classList.add('active-tab');
   setBnActive('bn-' + id);
 }
 
 function setBnActive(id) {
   var bns = document.querySelectorAll('.bottom-nav button');
-  for (var i = 0; i < bns.length; i++) bns[i].classList.remove('bn-on');
+  for(var i=0;i<bns.length;i++) bns[i].classList.remove('bn-on');
   var el = document.getElementById(id);
-  if (el) el.classList.add('bn-on');
+  if(el) el.classList.add('bn-on');
 }
 
 function bnClick(id, bnId) {
-  hideAll();
   setBnActive(bnId);
-  var isDayPanel = document.getElementById('day-' + id);
-  var isTabPanel = document.getElementById('tab-' + id);
-  if (isDayPanel) {
-    isDayPanel.classList.add('active');
-  } else if (isTabPanel) {
-    isTabPanel.classList.add('active');
+  hideAll();
+  var isDayPanel = ['lun','mar','mer','gio','ven','sab','dom'].indexOf(id) > -1;
+  if(isDayPanel) {
+    var el = document.getElementById('day-' + id + '-w' + currentWeek);
+    if(el) el.classList.add('active');
+    currentDay = id;
+    var sbEl = document.getElementById('sb-' + id);
+    if(sbEl) sbEl.classList.add('active-day');
+  } else {
+    var el = document.getElementById('tab-' + id);
+    if(el) el.classList.add('active');
   }
-  window.scrollTo(0, 0);
+  window.scrollTo(0,0);
 }
 
 // Swipe tra giorni
 var touchStartX = 0;
-document.addEventListener('touchstart', function(e) {
-  touchStartX = e.changedTouches[0].screenX;
-}, {passive: true});
-document.addEventListener('touchend', function(e) {
+document.addEventListener('touchstart', function(e){touchStartX=e.changedTouches[0].screenX;},{passive:true});
+document.addEventListener('touchend', function(e){
   var dx = e.changedTouches[0].screenX - touchStartX;
-  if (Math.abs(dx) < 70) return;
+  if(Math.abs(dx)<70) return;
   var active = document.querySelector('.panel.active');
-  if (!active) return;
-  var id = active.id;
-  if (id.indexOf('day-') !== 0) return;
-  var cur = days.indexOf(id.replace('day-', ''));
-  if (cur === -1) return;
-  var next = dx < 0 ? Math.min(cur + 1, days.length - 1) : Math.max(cur - 1, 0);
-  if (next !== cur) {
+  if(!active||active.id.indexOf('day-')!==0) return;
+  var parts = active.id.split('-');
+  var cur = days.indexOf(parts[1]);
+  if(cur===-1) return;
+  var next = dx<0?Math.min(cur+1,days.length-1):Math.max(cur-1,0);
+  if(next!==cur){
     hideAll();
-    document.getElementById('day-' + days[next]).classList.add('active');
+    currentDay=days[next];
+    var el=document.getElementById('day-'+days[next]+'-w'+currentWeek);
+    if(el) el.classList.add('active');
+    var sbEl=document.getElementById('sb-'+days[next]);
+    if(sbEl) sbEl.classList.add('active-day');
     setBnActive('bn-menu');
   }
-}, {passive: true});
+},{passive:true});
+
+// ---- COMPARATORE ----
+function populateSelects(cat) {
+  var items = FOODS[cat].items;
+  var keys = Object.keys(items);
+  var selA = document.getElementById('food-a');
+  var selB = document.getElementById('food-b');
+  selA.innerHTML = '';
+  selB.innerHTML = '';
+  for(var i=0;i<keys.length;i++){
+    selA.innerHTML += '<option value="'+keys[i]+'">'+keys[i]+'</option>';
+    selB.innerHTML += '<option value="'+keys[i]+'">'+keys[i]+'</option>';
+  }
+  if(keys.length>1) selB.selectedIndex = 1;
+  compute();
+}
+
+function setCat(cat, btn) {
+  currentCat = cat;
+  var cb = document.querySelectorAll('.comp-cat-btn');
+  for(var i=0;i<cb.length;i++) cb[i].classList.remove('ccat-on');
+  if(btn) btn.classList.add('ccat-on');
+  populateSelects(cat);
+}
+
+function macroInfo(name, grams) {
+  var d = FOODS[currentCat].items[name];
+  if(!d) return '—';
+  var f = grams/100;
+  return 'Calorie: <strong>'+(d.k*f).toFixed(0)+' kcal</strong> · Prot: '+(d.p*f).toFixed(1)+'g · Carb: '+(d.c*f).toFixed(1)+'g · Grassi: '+(d.f*f).toFixed(1)+'g';
+}
+
+function compute() {
+  var selA = document.getElementById('food-a').value;
+  var selB = document.getElementById('food-b').value;
+  var qtyA = parseFloat(document.getElementById('qty-a').value)||0;
+  if(!selA||!selB||qtyA<=0) return;
+
+  var dA = FOODS[currentCat].items[selA];
+  var dB = FOODS[currentCat].items[selB];
+  if(!dA||!dB) return;
+
+  // calories from A
+  var kcalA = dA.k * qtyA / 100;
+  // grams of B to match kcalA
+  var qtyB = (kcalA / dB.k * 100);
+
+  document.getElementById('info-a').innerHTML = macroInfo(selA, qtyA);
+  document.getElementById('info-b').innerHTML = macroInfo(selB, qtyB);
+
+  var res = document.getElementById('comp-result');
+  res.style.display = 'block';
+  document.getElementById('result-qty').textContent = qtyB.toFixed(0) + 'g di ' + selB;
+  document.getElementById('result-sub').textContent =
+    'equivalgono a '+qtyA.toFixed(0)+'g di '+selA+' ('+kcalA.toFixed(0)+' kcal)';
+
+  var macros = document.getElementById('result-macros');
+  var fB = qtyB/100;
+  macros.innerHTML =
+    '<div class="comp-macro-chip"><div class="cv">'+( dB.p*fB).toFixed(1)+'g</div><div class="cl">Proteine</div></div>'+
+    '<div class="comp-macro-chip"><div class="cv">'+( dB.c*fB).toFixed(1)+'g</div><div class="cl">Carboidrati</div></div>'+
+    '<div class="comp-macro-chip"><div class="cv">'+( dB.f*fB).toFixed(1)+'g</div><div class="cl">Grassi</div></div>';
+}
+
+// Init
+window.addEventListener('DOMContentLoaded', function() {
+  populateSelects('proteine');
+  setWeek(1, null);
+  showDayW('lun', document.getElementById('sb-lun'));
+});
 </script>
 </body>
 </html>
