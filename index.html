@@ -175,6 +175,15 @@ ul.ing li::before{content:"·";color:var(--green);font-weight:700;flex-shrink:0;
 }
 .wk-pill:hover{background:var(--gray-light);color:var(--text)}
 .wk-pill.wk-pill-on{background:var(--green);color:white;border-color:var(--green);font-weight:500}
+
+#dayBar::-webkit-scrollbar{display:none}
+.day-pill{flex-shrink:0;padding:5px 14px;font-size:.76rem;font-family:inherit;border:1px solid #D3D1C7;border-radius:99px;background:none;color:#888780;cursor:pointer;white-space:nowrap;transition:all .12s}
+.day-pill:hover{background:#F1EFE8;color:#2C2C2A}
+.day-pill.day-pill-on{background:#2C2C2A;color:white;border-color:#2C2C2A;font-weight:500}
+
+.main{overflow-y:auto;-webkit-overflow-scrolling:touch}
+.panel{min-height:10px}
+body{overflow-x:hidden}
 </style>
 </head>
 <body>
@@ -199,6 +208,15 @@ ul.ing li::before{content:"·";color:var(--green);font-weight:700;flex-shrink:0;
   <button class="wk-pill" onclick="setWeek(2,this)">Sett. 2</button>
   <button class="wk-pill" onclick="setWeek(3,this)">Sett. 3</button>
   <button class="wk-pill" onclick="setWeek(4,this)">Sett. 4</button>
+</div>
+<div style="display:flex;align-items:center;gap:.35rem;flex-wrap:nowrap;overflow-x:auto;padding:.5rem 1rem;background:#FAFAF8;border-bottom:1px solid #D3D1C7;-webkit-overflow-scrolling:touch;scrollbar-width:none;" id="dayBar">
+  <button class="day-pill day-pill-on" id="dp-lun" onclick="showDayW('lun',this)">Lun ⚽</button>
+  <button class="day-pill" id="dp-mar" onclick="showDayW('mar',this)">Mar</button>
+  <button class="day-pill" id="dp-mer" onclick="showDayW('mer',this)">Mer</button>
+  <button class="day-pill" id="dp-gio" onclick="showDayW('gio',this)">Gio ⚽</button>
+  <button class="day-pill" id="dp-ven" onclick="showDayW('ven',this)">Ven</button>
+  <button class="day-pill" id="dp-sab" onclick="showDayW('sab',this)">Sab 🍕</button>
+  <button class="day-pill" id="dp-dom" onclick="showDayW('dom',this)">Dom</button>
 </div>
 <div class="layout"><aside class="sidebar">
   <div class="sidebar-label">Settimana</div>
@@ -1392,11 +1410,23 @@ function showDayW(day, btn) {
   var id = 'day-' + day + '-w' + currentWeek;
   var el = document.getElementById(id);
   if(el) el.classList.add('active');
+  // sync sidebar
   var sbs = document.querySelectorAll('.nav-btn[id^="sb-"]');
   for(var i=0;i<sbs.length;i++) sbs[i].classList.remove('active-day');
   var sbEl = document.getElementById('sb-' + day);
   if(sbEl) sbEl.classList.add('active-day');
+  // sync day pills
+  var dps = document.querySelectorAll('.day-pill');
+  for(var i=0;i<dps.length;i++) dps[i].classList.remove('day-pill-on');
+  var dp = document.getElementById('dp-' + day);
+  if(dp){
+    dp.classList.add('day-pill-on');
+    // scroll pill into view in the bar
+    dp.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }
   setBnActive('bn-menu');
+  // scroll content to top smoothly
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function showTab(id, btn) {
@@ -1431,27 +1461,25 @@ function bnClick(id, bnId) {
   window.scrollTo(0,0);
 }
 
-// Swipe tra giorni
-var touchStartX = 0;
-document.addEventListener('touchstart', function(e){touchStartX=e.changedTouches[0].screenX;},{passive:true});
+// Swipe tra giorni (solo orizzontale, su .main)
+var touchStartX = 0, touchStartY = 0;
+var mainEl = document.querySelector('.main') || document;
+document.addEventListener('touchstart', function(e){
+  touchStartX=e.changedTouches[0].screenX;
+  touchStartY=e.changedTouches[0].screenY;
+},{passive:true});
 document.addEventListener('touchend', function(e){
   var dx = e.changedTouches[0].screenX - touchStartX;
-  if(Math.abs(dx)<70) return;
+  var dy = e.changedTouches[0].screenY - touchStartY;
+  // ignore if mostly vertical or too short
+  if(Math.abs(dx)<70 || Math.abs(dy)>Math.abs(dx)*0.8) return;
   var active = document.querySelector('.panel.active');
   if(!active||active.id.indexOf('day-')!==0) return;
   var parts = active.id.split('-');
   var cur = days.indexOf(parts[1]);
   if(cur===-1) return;
   var next = dx<0?Math.min(cur+1,days.length-1):Math.max(cur-1,0);
-  if(next!==cur){
-    hideAll();
-    currentDay=days[next];
-    var el=document.getElementById('day-'+days[next]+'-w'+currentWeek);
-    if(el) el.classList.add('active');
-    var sbEl=document.getElementById('sb-'+days[next]);
-    if(sbEl) sbEl.classList.add('active-day');
-    setBnActive('bn-menu');
-  }
+  if(next!==cur) showDayW(days[next], null);
 },{passive:true});
 
 // ---- COMPARATORE ----
